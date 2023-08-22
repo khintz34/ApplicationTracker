@@ -23,10 +23,8 @@ public class App {
             if (action.toLowerCase().equals("add")) {
                 addApps(appList);
             } else if (action.toLowerCase().equals("remove")) {
-                System.out.println("REMOVE");
-            } else if (action.toLowerCase().equals("update")
-
-            ) {
+                removeApps(appList);
+            } else if (action.toLowerCase().equals("update")) {
                 System.out.println("UPDATE");
             } else {
                 validAction = false;
@@ -47,14 +45,21 @@ public class App {
 
     public static void addApps(HashMap appList) {
         Scanner companyNameInput = new Scanner(System.in);
-        Scanner status = new Scanner(System.in);
         System.out.println("Company Name: ");
         String companyName = companyNameInput.nextLine();
 
+        Scanner status = new Scanner(System.in);
         System.out.println("Status: ");
         String companyStatus = status.nextLine();
 
         appList.put(companyName, companyStatus);
     }
 
+    public static void removeApps(HashMap appList) {
+        Scanner companyNameInput = new Scanner(System.in);
+        System.out.println("Company Name: ");
+        String companyName = companyNameInput.nextLine();
+
+        appList.remove(companyName);
+    }
 }

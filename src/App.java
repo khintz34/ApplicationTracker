@@ -19,6 +19,7 @@ public class App {
             Scanner whatsNext = new Scanner(System.in);
             System.out.println("Next Action (Add, Remove, Update): ");
             String action = whatsNext.nextLine();
+            whatsNext.close();
 
             if (action.toLowerCase().equals("add")) {
                 addApps(appList);
@@ -37,13 +38,16 @@ public class App {
 
     }
 
-    public static void addInitialApps(HashMap appList) {
+    public static void addInitialApps(HashMap<String, String> appList) {
         appList.put("Thrivent", "2nd Interview");
         appList.put("Dick's Sporting Goods", "Interview");
         appList.put("Royal Bank of Canada", "2nd Interview");
+        appList.put("Travelers", "Rejected");
+        appList.put("HP", "Rejected");
+        appList.put("Slack", "Pending");
     }
 
-    public static void addApps(HashMap appList) {
+    public static void addApps(HashMap<String, String> appList) {
         Scanner companyNameInput = new Scanner(System.in);
         System.out.println("Company Name: ");
         String companyName = companyNameInput.nextLine();
@@ -53,13 +57,16 @@ public class App {
         String companyStatus = status.nextLine();
 
         appList.put(companyName, companyStatus);
+        companyNameInput.close();
+        status.close();
     }
 
-    public static void removeApps(HashMap appList) {
+    public static void removeApps(HashMap<String, String> appList) {
         Scanner companyNameInput = new Scanner(System.in);
         System.out.println("Company Name: ");
         String companyName = companyNameInput.nextLine();
 
         appList.remove(companyName);
+        companyNameInput.close();
     }
 }

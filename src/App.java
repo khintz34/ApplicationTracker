@@ -1,6 +1,8 @@
 import java.util.HashMap;
 import java.util.Scanner;
 
+//todo figure out when to close the resource leaks
+
 public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Here are your current applications: ");
@@ -16,10 +18,10 @@ public class App {
         boolean validAction = true;
 
         while (validAction) {
+
             Scanner whatsNext = new Scanner(System.in);
             System.out.println("Next Action (Add, Remove, Update): ");
             String action = whatsNext.nextLine();
-            whatsNext.close();
 
             if (action.toLowerCase().equals("add")) {
                 addApps(appList);
@@ -29,13 +31,19 @@ public class App {
                 System.out.println("UPDATE");
             } else {
                 validAction = false;
+                whatsNext.close();
             }
         }
 
+        printAppList(appList);
+
+    }
+
+    public static void printAppList(HashMap<String, String> appList) {
+        System.out.println("---Current Application List---");
         for (String i : appList.keySet()) {
             System.out.println("Company: " + i + " -- Status: " + appList.get(i));
         }
-
     }
 
     public static void addInitialApps(HashMap<String, String> appList) {
@@ -57,16 +65,18 @@ public class App {
         String companyStatus = status.nextLine();
 
         appList.put(companyName, companyStatus);
-        companyNameInput.close();
-        status.close();
+        printAppList(appList);
+        // companyNameInput.close();
+        // status.close();
     }
 
     public static void removeApps(HashMap<String, String> appList) {
         Scanner companyNameInput = new Scanner(System.in);
         System.out.println("Company Name: ");
         String companyName = companyNameInput.nextLine();
-
         appList.remove(companyName);
-        companyNameInput.close();
+        printAppList(appList);
+        // companyNameInput.close();
+
     }
 }

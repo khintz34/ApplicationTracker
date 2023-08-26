@@ -59,47 +59,51 @@ public class App {
     }
 
     public static void addApps(HashMap<String, String> appList) {
-        Scanner companyNameInput = new Scanner(System.in);
-        System.out.println("Company Name: ");
-        String companyName = companyNameInput.nextLine();
+        String name = getCompanyName();
+        String status = getStatus();
 
-        Scanner status = new Scanner(System.in);
-        System.out.println("Status: ");
-        String companyStatus = status.nextLine();
-
-        appList.put(companyName, companyStatus);
+        appList.put(name, status);
         printAppList(appList);
         // companyNameInput.close();
         // status.close();
     }
 
     public static void removeApps(HashMap<String, String> appList) {
-        Scanner companyNameInput = new Scanner(System.in);
-        System.out.println("Company Name: ");
-        String companyName = companyNameInput.nextLine();
-        appList.remove(companyName);
+        String name = getCompanyName();
+        appList.remove(name);
         printAppList(appList);
         // companyNameInput.close();
 
     }
 
     public static void updateStatus(HashMap<String, String> appList) {
-        Scanner companyNameInput = new Scanner(System.in);
-        System.out.println("Company Name: ");
-        String companyName = companyNameInput.nextLine();
-        System.out.println("Current Status: " + appList.get(companyName));
-        Scanner statusInput = new Scanner(System.in);
-        System.out.println("New Status: ");
-        String statusValue = statusInput.nextLine();
-        appList.put(companyName, statusValue);
+        String name = getCompanyName();
+        System.out.println("Current Status: " + appList.get(name));
+        String status = getStatus();
+        appList.put(name, status);
         printAppList(appList);
     }
 
     public static void searchForCompany(HashMap<String, String> appList) {
+        String name = getCompanyName();
+
+        System.out.println("Company: " + name + " -- Status: " + appList.get(name));
+
+    }
+
+    public static String getCompanyName() {
         Scanner companyNameInput = new Scanner(System.in);
         System.out.println("Company Name: ");
         String companyName = companyNameInput.nextLine();
 
-        System.out.println("Company: " + companyName + " -- Status: " + appList.get(companyName));
+        return companyName;
+    }
+
+    public static String getStatus() {
+        Scanner statusInput = new Scanner(System.in);
+        System.out.println("New Status: ");
+        String statusValue = statusInput.nextLine();
+
+        return statusValue;
     }
 }

@@ -1,6 +1,7 @@
 import java.util.HashMap;
 import java.util.Scanner;
 
+//todo wrtie Update feature
 //todo figure out when to close the resource leaks
 
 public class App {
@@ -20,7 +21,7 @@ public class App {
         while (validAction) {
 
             Scanner whatsNext = new Scanner(System.in);
-            System.out.println("Next Action (Add, Remove, Update): ");
+            System.out.println("Next Action (Add, Remove, Update, Search, End): ");
             String action = whatsNext.nextLine();
 
             if (action.toLowerCase().equals("add")) {
@@ -28,7 +29,9 @@ public class App {
             } else if (action.toLowerCase().equals("remove")) {
                 removeApps(appList);
             } else if (action.toLowerCase().equals("update")) {
-                System.out.println("UPDATE");
+                updateStatus(appList);
+            } else if (action.toLowerCase().equals("search")) {
+                searchForCompany(appList);
             } else {
                 validAction = false;
                 whatsNext.close();
@@ -78,5 +81,25 @@ public class App {
         printAppList(appList);
         // companyNameInput.close();
 
+    }
+
+    public static void updateStatus(HashMap<String, String> appList) {
+        Scanner companyNameInput = new Scanner(System.in);
+        System.out.println("Company Name: ");
+        String companyName = companyNameInput.nextLine();
+        System.out.println("Current Status: " + appList.get(companyName));
+        Scanner statusInput = new Scanner(System.in);
+        System.out.println("New Status: ");
+        String statusValue = statusInput.nextLine();
+        appList.put(companyName, statusValue);
+        printAppList(appList);
+    }
+
+    public static void searchForCompany(HashMap<String, String> appList) {
+        Scanner companyNameInput = new Scanner(System.in);
+        System.out.println("Company Name: ");
+        String companyName = companyNameInput.nextLine();
+
+        System.out.println("Company: " + companyName + " -- Status: " + appList.get(companyName));
     }
 }

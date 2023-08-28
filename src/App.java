@@ -1,8 +1,8 @@
 import java.util.HashMap;
 import java.util.Scanner;
 
-//todo wrtie Update feature
 //todo figure out when to close the resource leaks
+//todo add google firebase
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -64,15 +64,12 @@ public class App {
 
         appList.put(name, status);
         printAppList(appList);
-        // companyNameInput.close();
-        // status.close();
     }
 
     public static void removeApps(HashMap<String, String> appList) {
         String name = getCompanyName();
         appList.remove(name);
         printAppList(appList);
-        // companyNameInput.close();
 
     }
 
